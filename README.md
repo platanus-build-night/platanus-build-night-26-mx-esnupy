@@ -1,6 +1,8 @@
 # Priora — Platanus Build Night CDMX
 
-<img src="./extension/icons/icon128.png" alt="Priora" width="80" />
+**Current project logo:** project-logo.png
+
+<img src="./project-logo.png" alt="Priora" width="200" />
 
 Extensión de Chrome que guarda productos de **cualquier tienda** y usa IA para decirte **qué comprar este mes**, qué esperar y qué no conviene — con tu presupuesto y perfil de gustos.
 
