@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Priora",
+  "version": "0.1.0",
+  "description": "Wishlist con presupuesto mensual e IA que prioriza qué comprar.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["https://api.anthropic.com/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Priora"
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "icons": {
+    "128": "icons/icon128.png"
+  }
+}

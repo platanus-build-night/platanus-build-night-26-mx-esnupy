@@ -1,0 +1,8 @@
+.DS_Store
+.env
+.env.local
+backend/.env
+/bin/priora-api
+node_modules/
+.next/
+next-env.d.ts
