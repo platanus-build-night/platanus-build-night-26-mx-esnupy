@@ -1,0 +1,161 @@
+/**
+ * Tokens y componentes compartidos — popup + options
+ */
+
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --text: #37352f;
+  --text-secondary: #787774;
+  --text-tertiary: #9b9a97;
+  --border: rgba(55, 53, 47, 0.09);
+  --border-strong: rgba(55, 53, 47, 0.16);
+  --accent: #5e6ad2;
+  --accent-hover: #4f5abf;
+  --accent-soft: rgba(94, 106, 210, 0.1);
+  --success: #0f7b6c;
+  --success-soft: rgba(15, 123, 108, 0.1);
+  --warning: #b45309;
+  --warning-soft: rgba(180, 83, 9, 0.1);
+  --danger: #9b4438;
+  --danger-soft: rgba(155, 68, 56, 0.08);
+  --radius: 8px;
+  --radius-lg: 10px;
+  --shadow-sm: 0 1px 2px rgba(15, 15, 15, 0.04);
+  --font:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--text);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius);
+  padding: 9px 14px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    opacity 0.15s,
+    border-color 0.15s;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--text);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #2f2e2b;
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(55, 53, 47, 0.04);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-accent:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn.is-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.btn.is-loading .btn-label {
+  opacity: 0;
+}
+
+.btn.is-loading::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+}
+
+.btn-secondary.is-loading::after {
+  border-color: rgba(55, 53, 47, 0.15);
+  border-top-color: var(--text);
+}
+
+.btn-success-flash {
+  animation: successFlash 0.55s ease;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes successFlash {
+  0%,
+  100% {
+    background: var(--surface);
+  }
+  40% {
+    background: var(--success-soft);
+    border-color: rgba(15, 123, 108, 0.25);
+  }
+}

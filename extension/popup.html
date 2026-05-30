@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Priora</title>
+    <link rel="stylesheet" href="shared.css" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">P</span>
+        <span class="brand-name">Priora</span>
+      </div>
+      <a href="#" id="openOptions" class="header-link">Perfil</a>
+    </header>
+
+    <section class="toolbar">
+      <button type="button" id="btnSave" class="btn btn-secondary btn-block">
+        <span class="btn-label">Guardar esta página</span>
+      </button>
+      <button type="button" id="btnPrioritize" class="btn btn-primary btn-block" disabled>
+        <span class="btn-label">Priorizar con IA</span>
+      </button>
+    </section>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+
+    <section id="aiResult" class="ai-card hidden" aria-label="Resultado de priorización">
+      <div class="ai-card-header">
+        <span class="ai-card-label">Resumen</span>
+      </div>
+      <p id="aiSummary" class="ai-card-text"></p>
+      <div id="aiStats" class="ai-stats"></div>
+    </section>
+
+    <div class="list-header">
+      <span class="list-label">Wishlist</span>
+      <span id="listCount" class="list-count"></span>
+    </div>
+
+    <ul id="wishlist" class="wishlist" aria-label="Lista de deseos"></ul>
+
+    <div id="empty" class="empty hidden">
+      <div class="empty-icon" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect
+            x="4"
+            y="8"
+            width="24"
+            height="18"
+            rx="3"
+            stroke="currentColor"
+            stroke-width="1.5"
+          />
+          <path
+            d="M4 13h24M11 8V6a2 2 0 012-2h6a2 2 0 012 2v2"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+        </svg>
+      </div>
+      <p class="empty-title">Tu wishlist está vacía</p>
+      <p class="empty-desc">
+        Abre un producto en cualquier tienda y guarda la página.
+      </p>
+    </div>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

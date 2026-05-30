@@ -1,5 +1,5 @@
 {
-  "project-name": "<FILL THIS>",
-  "project-oneliner": "<FILL THIS>",
-  "project-description": "<FILL THIS>"
+  "project-name": "Priora",
+  "project-oneliner": "Wishlist con presupuesto mensual e IA que prioriza qué comprar, esperar o no comprar.",
+  "project-description": "Extensión de Chrome para quienes acumulan productos en pestañas: guarda artículos de cualquier tienda, configura presupuesto y gustos, y con un clic la IA ordena tu wishlist con veredictos Comprar/Esperar/No comprar y razones concretas. BYOK Anthropic — la API key nunca sale del navegador."
 }

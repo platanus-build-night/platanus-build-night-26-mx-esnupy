@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Perfil — Priora</title>
+    <link rel="stylesheet" href="shared.css" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">P</span>
+          <span class="brand-name">Priora</span>
+        </div>
+        <span class="topbar-label">Perfil de compras</span>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="page-header">
+        <h1>Tu perfil</h1>
+        <p class="lead">
+          Cuanto más claro seas aquí, mejores serán las recomendaciones de
+          <strong>Priorizar con IA</strong>.
+        </p>
+      </div>
+
+      <aside class="callout callout--security" role="note">
+        <div class="callout-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M8 1.5L2.5 4v4c0 3.5 2.3 6.7 5.5 7.5 3.2-.8 5.5-4 5.5-7.5V4L8 1.5z"
+              stroke="currentColor"
+              stroke-width="1.25"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6 8l1.5 1.5L10.5 6"
+              stroke="currentColor"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div class="callout-body">
+          <p class="callout-title">Tu key nunca sale de tu Mac</p>
+          <p class="callout-text">
+            La API key vive en <code>chrome.storage.local</code> y la IA se llama
+            directo a Anthropic — no pasa por nuestro servidor.
+          </p>
+        </div>
+      </aside>
+
+      <form id="profileForm" class="form">
+        <!-- API Key -->
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">Conexión con IA</h2>
+            <p class="card-desc">Necesitas tu propia API key de Anthropic (BYOK).</p>
+          </div>
+
+          <div class="card-body">
+            <div
+              id="keyStatus"
+              class="status-pill"
+              role="status"
+              aria-live="polite"
+            >
+              <span class="status-dot" aria-hidden="true"></span>
+              Sin API key configurada
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="anthropicApiKey">
+                API key
+                <span class="field-optional">solo al agregar o cambiar</span>
+              </label>
+              <input
+                type="password"
+                id="anthropicApiKey"
+                class="input"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="sk-ant-..."
+              />
+              <p class="field-hint">
+                <a
+                  href="https://console.anthropic.com/settings/keys"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Crear key en Anthropic</a
+                >
+                — tú pagas tu uso. Nunca mostramos la key guardada.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              id="btnDeleteKey"
+              class="btn btn-ghost btn-ghost--danger"
+              disabled
+            >
+              Borrar API key de este navegador
+            </button>
+          </div>
+        </section>
+
+        <!-- Presupuesto -->
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">Tu lana este mes</h2>
+            <p class="card-desc">
+              La IA usa esto para decidir qué cabe y qué debe esperar.
+            </p>
+          </div>
+
+          <div class="card-body">
+            <div class="field-row">
+              <div class="field">
+                <label class="field-label" for="monthlyBudgetMXN">
+                  Presupuesto mensual
+                </label>
+                <div class="input-prefix">
+                  <span class="input-prefix-text">$</span>
+                  <input
+                    type="number"
+                    id="monthlyBudgetMXN"
+                    class="input input--prefix"
+                    min="0"
+                    step="100"
+                    required
+                    placeholder="5000"
+                  />
+                  <span class="input-suffix">MXN</span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="spentThisMonthMXN">
+                  Ya gasté este mes
+                  <span class="field-optional">opcional</span>
+                </label>
+                <div class="input-prefix">
+                  <span class="input-prefix-text">$</span>
+                  <input
+                    type="number"
+                    id="spentThisMonthMXN"
+                    class="input input--prefix"
+                    min="0"
+                    step="100"
+                    placeholder="0"
+                  />
+                  <span class="input-suffix">MXN</span>
+                </div>
+                <p class="field-hint">
+                  Si lo pones, la IA calcula cuánto te queda disponible.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Estilo de compra -->
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">¿Cómo decides comprar?</h2>
+            <p class="card-desc">
+              Esto cambia qué productos prioriza la IA cuando hay trade-offs.
+            </p>
+          </div>
+
+          <div class="card-body">
+            <fieldset class="priority-group">
+              <legend class="sr-only">Prioridad al comprar</legend>
+
+              <label class="priority-card">
+                <input type="radio" name="priority" value="ahorro" />
+                <span class="priority-card-inner">
+                  <span class="priority-icon" aria-hidden="true">💰</span>
+                  <span class="priority-name">Ahorro</span>
+                  <span class="priority-desc"
+                    >Precio primero. Busco ofertas y alternativas baratas.</span
+                  >
+                </span>
+              </label>
+
+              <label class="priority-card">
+                <input type="radio" name="priority" value="balance" checked />
+                <span class="priority-card-inner">
+                  <span class="priority-icon" aria-hidden="true">⚖️</span>
+                  <span class="priority-name">Balance</span>
+                  <span class="priority-desc"
+                    >Relación calidad-precio. Pago más si vale la pena.</span
+                  >
+                </span>
+              </label>
+
+              <label class="priority-card">
+                <input type="radio" name="priority" value="calidad" />
+                <span class="priority-card-inner">
+                  <span class="priority-icon" aria-hidden="true">✨</span>
+                  <span class="priority-name">Calidad</span>
+                  <span class="priority-desc"
+                    >Prefiero lo mejor aunque cueste más. No escatimo.</span
+                  >
+                </span>
+              </label>
+            </fieldset>
+          </div>
+        </section>
+
+        <!-- Contexto personal -->
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">Para que la IA te conozca</h2>
+            <p class="card-desc">
+              Responde con ejemplos concretos — evita respuestas genéricas.
+            </p>
+          </div>
+
+          <div class="card-body field-stack">
+            <div class="field">
+              <label class="field-label" for="tastes">
+                ¿En qué te gusta gastar?
+              </label>
+              <textarea
+                id="tastes"
+                class="input input--textarea"
+                rows="3"
+                maxlength="400"
+                placeholder="Ej: tecnología (audífonos, gadgets), café de especialidad, ropa minimalista en negro/gris, libros de negocios, equipo de gym en casa..."
+              ></textarea>
+              <p class="field-hint">
+                Categorías, marcas que te gustan o estilo de vida. Ayuda a
+                priorizar lo que encaja contigo.
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="mustBuyThisMonth">
+                ¿Qué sí o sí quieres comprar este mes?
+              </label>
+              <textarea
+                id="mustBuyThisMonth"
+                class="input input--textarea"
+                rows="2"
+                maxlength="300"
+                placeholder="Ej: audífonos nuevos para trabajo remoto, regalo de cumpleaños para mi mamá el 15..."
+              ></textarea>
+              <p class="field-hint">
+                Metas o compras ancladas. La IA las trata con más peso.
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="avoidThisMonth">
+                ¿Qué evitas o pospones este mes?
+              </label>
+              <textarea
+                id="avoidThisMonth"
+                class="input input--textarea"
+                rows="2"
+                maxlength="300"
+                placeholder="Ej: nada de ropa, no gadgets hasta enero, cero delivery innecesario..."
+              ></textarea>
+              <p class="field-hint">
+                Límites explícitos. La IA marca skip más agresivo aquí.
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="regretPurchases">
+                ¿En qué sueles arrepentirte de comprar?
+              </label>
+              <textarea
+                id="regretPurchases"
+                class="input input--textarea"
+                rows="2"
+                maxlength="300"
+                placeholder="Ej: gadgets que uso una semana, ropa por impulso en oferta, suscripciones que no uso..."
+              ></textarea>
+              <p class="field-hint">
+                Patrones de compras impulsivas. La IA los usa para cuestionar
+                items similares.
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="notes">
+                Contexto extra
+                <span class="field-optional">opcional</span>
+              </label>
+              <textarea
+                id="notes"
+                class="input input--textarea"
+                rows="2"
+                maxlength="300"
+                placeholder="Ej: este mes tengo boda, viaje en 3 semanas, acabo de pagar el seguro del carro..."
+              ></textarea>
+              <p class="field-hint">
+                Eventos, gastos grandes recientes o cualquier cosa que afecte tu
+                presupuesto ahora.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="form-footer">
+          <button type="submit" class="btn btn-primary">Guardar perfil</button>
+          <p id="saved" class="toast hidden" role="status">
+            Perfil guardado correctamente
+          </p>
+          <p id="keyDeleted" class="toast toast--warn hidden" role="status">
+            API key eliminada de este navegador
+          </p>
+        </div>
+      </form>
+    </main>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>
