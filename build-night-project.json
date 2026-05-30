@@ -1,5 +1,5 @@
 {
-  "project-name": "<FILL THIS>",
-  "project-oneliner": "<FILL THIS>",
-  "project-description": "<FILL THIS>"
+  "project-name": "Contract Diff",
+  "project-oneliner": "Compara dos versiones de un contrato con proveedores y detecta las diferencias materiales en segundos.",
+  "project-description": "Herramienta para equipos de retail que negocian con proveedores: subes la versión anterior y la nueva del contrato en PDF, PageIndex las indexa y Claude (vía el MCP de PageIndex) lee ambas cláusula por cláusula para entregar un diff estructurado: resumen ejecutivo, nivel de riesgo, recomendación y cada cambio con su categoría, severidad e impacto para el negocio."
 }
